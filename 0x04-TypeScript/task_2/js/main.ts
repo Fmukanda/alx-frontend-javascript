@@ -54,3 +54,19 @@ function createEmployee(salary: number | string): Employee {
     return new Director();
   }
 }
+
+function isDirector(employee: Employee): employee is Director {
+  // Check if the employee has the workDirectorTasks method specific to Director
+  return (employee as Director).workDirectorTasks !== undefined;
+}
+
+// 2. executeWork function
+function executeWork(employee: Employee): string {
+  if (isDirector(employee)) {
+    // TypeScript now knows employee is a Director
+    return employee.workDirectorTasks();
+  } else {
+    // TypeScript now knows employee is a Teacher
+    return employee.workTeacherTasks();
+  }
+}
