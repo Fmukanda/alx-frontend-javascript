@@ -37,6 +37,10 @@ const printTeacher: printTeacherFunction = (firstName: string, lastName: string)
   return `${firstInitial}. ${lastName}`;
 };
 
+// const printTeacher: printTeacherFunction = (firstName: string, lastName: string): string => {
+//  return `${firstName.charAt(0)}. ${lastName}`;
+// };
+
 // Example usage and demonstrations
 function demonstrateTeacherInterface(): void {
   // Create a teacher with required properties
