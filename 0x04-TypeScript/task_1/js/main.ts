@@ -38,7 +38,9 @@ const printTeacher: printTeacherFunction = (firstName: string, lastName: string)
 };
 
 // Using the function
-console.log(printTeacher("John", "Doe"));     // "J. Doe"
+export function demonstratePrintTeacher(): void {
+  console.log(`printTeacher("John", "Doe") -> ${printTeacher("John", "Doe")}`);
+}
 
 // Example usage and demonstrations
 function demonstrateTeacherInterface(): void {
