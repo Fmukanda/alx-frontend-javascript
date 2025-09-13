@@ -17,11 +17,25 @@ interface Teacher {
   [key: string]: any;
 }
 
-// import { Teacher } from './teacher';
 // Interface for Directors that extends Teacher
 interface Director extends Teacher {
   numberOfReports: number;
 }
+
+// Interface for the printTeacher function
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
+}
+
+// Implementation of the printTeacher function
+const printTeacher: printTeacherFunction = (firstName: string, lastName: string): string => {
+  if (!firstName || !lastName) {
+    throw new Error('Both firstName and lastName are required');
+  }
+  
+  const firstInitial = firstName.charAt(0).toUpperCase();
+  return `${firstInitial}. ${lastName}`;
+};
 
 // Example usage and demonstrations
 function demonstrateTeacherInterface(): void {
