@@ -37,7 +37,9 @@ const printTeacher: printTeacherFunction = (firstName: string, lastName: string)
   return `${firstInitial}. ${lastName}`;
 };
 
-// Using the function
+// printTeacher(firstName: string, lastName: string): string {
+//  return `${firstName. ${lastName}`;};
+
 // printTeacher(firstName,lastName) -> return ${firstName,lastName}
 export function demonstratePrintTeacher(): void {
   console.log(`printTeacher("John", "Doe") -> ${printTeacher("John", "Doe")}`);
