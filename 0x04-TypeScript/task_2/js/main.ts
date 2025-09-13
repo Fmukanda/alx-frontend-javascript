@@ -71,3 +71,44 @@ function executeWork(employee: Employee): string {
     return employee.workTeacherTasks();
   }
 }
+
+// String literal type named Subjects
+type Subjects = 'Math' | 'History';
+
+// Function teachClass
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  } else if (todayClass === 'History') {
+    return 'Teaching History';
+  } else {
+    // This should never happen due to TypeScript's type checking,
+    // but provides a fallback for runtime safety
+    throw new Error(`Invalid subject: ${todayClass}`);
+  }
+}
+
+// Demonstration function
+export function demonstrateTeachClass(): void {
+  console.log('=== teachClass Function Demonstration ===');
+  
+  // Test with valid subjects
+  console.log(`teachClass('Math'): ${teachClass('Math')}`);
+  console.log(`teachClass('History'): ${teachClass('History')}`);
+  
+  // Expected results
+  console.log('\nExpected Results:');
+  console.log('teachClass(\'Math\');    // Expected: "Teaching Math"');
+  console.log('teachClass(\'History\'); // Expected: "Teaching History"');
+  
+  // Test type safety - this would cause TypeScript error if uncommented:
+  // console.log(teachClass('Science')); // Error: Argument of type '"Science"' is not assignable to parameter of type 'Subjects'
+}
+
+// Utility function to check if a string is a valid Subject
+export function isValidSubject(subject: string): subject is Subjects {
+  return subject === 'Math' || subject === 'History';
+}
+
+// Export the function and type
+export { teachClass, Subjects };
