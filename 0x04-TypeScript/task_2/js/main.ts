@@ -47,7 +47,8 @@ type Employee = Director | Teacher;
 
 // Function to create employee based on salary
 function createEmployee(salary: number | string): Employee {
-  if (salary < 500  && typeof salary === 'number') {
+  // if (salary < 500)
+  if (typeof salary === 'number' && salary < 500) {
     return new Teacher();
   } else {
     return new Director();
