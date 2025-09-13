@@ -198,3 +198,210 @@ displayTeacherInfo(exampleTeacher);
 
 // Export the interface and utility functions
 export { Teacher, createTeacher, displayTeacherInfo };
+
+// Complete demonstration of the Teacher interface
+import { Teacher, createTeacher, displayTeacherInfo } from './teacher';
+
+// Example 1: Basic teacher with all required properties
+const basicTeacher: Teacher = {
+  firstName: 'John',
+  lastName: 'Smith',
+  fullTimeEmployee: true,
+  location: 'Boston'
+};
+
+// Example 2: Teacher with optional yearsOfExperience
+const experiencedTeacher: Teacher = {
+  firstName: 'Maria',
+  lastName: 'Garcia',
+  fullTimeEmployee: true,
+  location: 'Miami',
+  yearsOfExperience: 15
+};
+
+// Example 3: Teacher with multiple additional attributes
+const detailedTeacher: Teacher = {
+  firstName: 'David',
+  lastName: 'Chen',
+  fullTimeEmployee: false,
+  location: 'Seattle',
+  yearsOfExperience: 3,
+  // Additional attributes using index signature
+  contract: true,
+  department: 'Computer Science',
+  hasPhD: true,
+  salary: 75000,
+  courses: ['JavaScript', 'TypeScript', 'React'],
+  officeHours: 'Monday 2-4 PM',
+  email: 'david.chen@school.edu'
+};
+
+// Example 4: Part-time teacher with different additional attributes
+const partTimeTeacher: Teacher = {
+  firstName: 'Lisa',
+  lastName: 'Anderson',
+  fullTimeEmployee: false,
+  location: 'Portland',
+  // No yearsOfExperience (optional)
+  contract: false,
+  isSubstitute: true,
+  availableDays: ['Tuesday', 'Thursday'],
+  hourlyRate: 35,
+  backgroundCheck: true
+};
+
+// Function to demonstrate readonly properties
+function demonstrateReadonlyProperties(): void {
+  console.log('\n=== Demonstrating Readonly Properties ===');
+  
+  const teacher: Teacher = {
+    firstName: 'Alice',
+    lastName: 'Wilson',
+    fullTimeEmployee: true,
+    location: 'Denver',
+    department: 'Biology'
+  };
+  
+  console.log(`Original name: ${teacher.firstName} ${teacher.lastName}`);
+  
+  // These lines would cause TypeScript compilation errors:
+  // teacher.firstName = 'NewFirstName'; // Error!
+  // teacher.lastName = 'NewLastName';   // Error!
+  
+  // But we can modify other properties:
+  teacher.fullTimeEmployee = false;
+  teacher.location = 'Phoenix';
+  teacher.department = 'Chemistry';
+  teacher.newSkill = 'Laboratory Management'; // Add new attribute
+  
+  console.log('After modifications (name unchanged):', teacher);
+  console.log(`Name is still: ${teacher.firstName} ${teacher.lastName}`);
+}
+
+// Function to demonstrate dynamic attribute addition
+function demonstrateDynamicAttributes(): void {
+  console.log('\n=== Demonstrating Dynamic Attribute Addition ===');
+  
+  const teacher: Teacher = {
+    firstName: 'Robert',
+    lastName: 'Taylor',
+    fullTimeEmployee: true,
+    location: 'Chicago'
+  };
+  
+  console.log('Initial teacher:', teacher);
+  
+  // Add various types of additional attributes
+  teacher.contract = true;
+  teacher.salary = 60000;
+  teacher.hasPhD = false;
+  teacher.certifications = ['Teaching License', 'CPR Certified'];
+  teacher.startDate = '2020-08-15';
+  teacher.performanceRating = 4.8;
+  teacher.mentorFor = ['New Teacher 1', 'New Teacher 2'];
+  
+  console.log('Teacher with dynamic attributes:', teacher);
+  
+  // Access dynamic attributes
+  console.log(`Contract status: ${teacher.contract}`);
+  console.log(`Certifications: ${teacher.certifications}`);
+  console.log(`Performance rating: ${teacher.performanceRating}`);
+}
+
+// Function to validate Teacher objects
+function validateTeacher(teacher: Teacher): boolean {
+  const requiredProps = ['firstName', 'lastName', 'fullTimeEmployee', 'location'];
+  
+  for (const prop of requiredProps) {
+    if (teacher[prop] === undefined || teacher[prop] === null) {
+      console.log(`Validation failed: Missing required property '${prop}'`);
+      return false;
+    }
+  }
+  
+  // Check types
+  if (typeof teacher.firstName !== 'string' || typeof teacher.lastName !== 'string') {
+    console.log('Validation failed: firstName and lastName must be strings');
+    return false;
+  }
+  
+  if (typeof teacher.fullTimeEmployee !== 'boolean') {
+    console.log('Validation failed: fullTimeEmployee must be boolean');
+    return false;
+  }
+  
+  if (typeof teacher.location !== 'string') {
+    console.log('Validation failed: location must be string');
+    return false;
+  }
+  
+  if (teacher.yearsOfExperience !== undefined && typeof teacher.yearsOfExperience !== 'number') {
+    console.log('Validation failed: yearsOfExperience must be number when provided');
+    return false;
+  }
+  
+  console.log('Teacher validation passed!');
+  return true;
+}
+
+// Main demonstration function
+function runTeacherDemo(): void {
+  console.log('=== TEACHER INTERFACE DEMONSTRATION ===');
+  
+  // Display all example teachers
+  console.log('\n--- Example Teachers ---');
+  displayTeacherInfo(basicTeacher);
+  displayTeacherInfo(experiencedTeacher);
+  displayTeacherInfo(detailedTeacher);
+  displayTeacherInfo(partTimeTeacher);
+  
+  // Demonstrate readonly properties
+  demonstrateReadonlyProperties();
+  
+  // Demonstrate dynamic attributes
+  demonstrateDynamicAttributes();
+  
+  // Demonstrate teacher creation with factory function
+  console.log('\n=== Using Factory Function ===');
+  const factoryTeacher = createTeacher(
+    'Jennifer',
+    'Lee',
+    true,
+    'Austin',
+    6,
+    {
+      contract: true,
+      department: 'Art',
+      specialization: 'Digital Art',
+      exhibitionsCount: 12
+    }
+  );
+  displayTeacherInfo(factoryTeacher);
+  
+  // Validate teachers
+  console.log('\n=== Teacher Validation ===');
+  validateTeacher(basicTeacher);
+  validateTeacher(detailedTeacher);
+  
+  // Create array of teachers
+  const teachers: Teacher[] = [
+    basicTeacher,
+    experiencedTeacher,
+    detailedTeacher,
+    partTimeTeacher,
+    factoryTeacher
+  ];
+  
+  console.log('\n=== Teachers Summary ===');
+  teachers.forEach((teacher, index) => {
+    console.log(`Teacher ${index + 1}: ${teacher.firstName} ${teacher.lastName} - ${teacher.fullTimeEmployee ? 'Full-time' : 'Part-time'} in ${teacher.location}`);
+  });
+}
+
+// Export demonstration function
+export { runTeacherDemo };
+
+// Run the demo if this file is executed directly
+if (require.main === module) {
+  runTeacherDemo();
+}
