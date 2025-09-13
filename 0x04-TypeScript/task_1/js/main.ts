@@ -37,9 +37,8 @@ const printTeacher: printTeacherFunction = (firstName: string, lastName: string)
   return `${firstInitial}. ${lastName}`;
 };
 
-// function printTeacher: printTeacherFunction(firstName: string, lastName: string): string {
-//  return `${firstName.charAt(0)}. ${lastName}`;
-// };
+// Using the function
+console.log(printTeacher("John", "Doe"));     // "J. Doe"
 
 // Example usage and demonstrations
 function demonstrateTeacherInterface(): void {
