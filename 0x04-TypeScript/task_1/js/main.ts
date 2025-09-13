@@ -43,6 +43,62 @@ export function demonstratePrintTeacher(): void {
   console.log(`printTeacher("John", "Doe") -> ${printTeacher("John", "Doe")}`);
 }
 
+
+// Interface for the StudentClass constructor
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
+
+// Interface for the StudentClass instance methods
+interface StudentClassInterface {
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+// Implementation of the StudentClass
+class StudentClass implements StudentClassInterface {
+  private firstName: string;
+  private lastName: string;
+
+  // Constructor
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  // Method implementations
+  workOnHomework(): string {
+    return 'Currently working';
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+
+  // Optional: Getter methods for encapsulation
+  getFirstName(): string {
+    return this.firstName;
+  }
+
+  getLastName(): string {
+    return this.lastName;
+  }
+
+  // Optional: Setter methods with validation
+  setFirstName(firstName: string): void {
+    if (firstName && firstName.trim().length > 0) {
+      this.firstName = firstName.trim();
+    }
+  }
+
+  setLastName(lastName: string): void {
+    if (lastName && lastName.trim().length > 0) {
+      this.lastName = lastName.trim();
+    }
+  }
+}
+
+
 // Example usage and demonstrations
 function demonstrateTeacherInterface(): void {
   // Create a teacher with required properties
