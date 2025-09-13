@@ -19,9 +19,10 @@ interface Teacher {
 
 // import { Teacher } from './teacher';
 // Interface for Directors that extends Teacher
-interface Directors extends Teacher {
+interface Director extends Teacher {
   numberOfReports: number;
 }
+
 // Example usage and demonstrations
 function demonstrateTeacherInterface(): void {
   // Create a teacher with required properties
