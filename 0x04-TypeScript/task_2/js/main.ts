@@ -55,6 +55,7 @@ function createEmployee(salary: number | string): Employee {
   }
 }
 
+// export function isDirector
 function isDirector(employee: Employee): employee is Director {
   // Check if the employee has the workDirectorTasks method specific to Director
   return (employee as Director).workDirectorTasks !== undefined;
